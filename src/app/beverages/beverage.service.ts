@@ -19,25 +19,31 @@ export class BeverageService {
         return this.http.get(`${this.apiUrl}/beverage`)
         .toPromise()
         .then((resp) => {
-            let beverages = resp.json();
+            const beverages = resp.json();
             return beverages;
         });
     }
 
-    getBeverageById(beverageId): Promise<Object> {
-        return;
+    async getBeverageById(beverageID): Promise<Object> {
+        const resp = await this.http.get(`${this.apiUrl}/beverage/id/${beverageID}`).toPromise();
+        const beverage = resp.json();
+        return beverage || [];
     }
 
-    addBeverage(beverage): Promise<Object> {
-        return;
+    async addBeverage(beverage): Promise<Object> {
+        const resp = await this.http.post(`${this.apiUrl}/beverage`, beverage).toPromise();
+        const newBeverage = resp.json();
+        return newBeverage || null;
+    }
+    async deleteBeverage(beverageID): Promise<Object> {
+        const resp = await this.http.delete(`${this.apiUrl}/beverage/id/${beverageID}`).toPromise();
+        const status = resp.json();
+        return status;
     }
 
-    deleteBeverage(id): Promise<Object> {
-        return;
+    async updateBeverage(beverageID, beverage): Promise<Object> {
+        const resp = await this.http.put(`${this.apiUrl}/beverage/id/${beverageID}`, beverage).toPromise();
+        const updatedBeverage = resp.json();
+        return updatedBeverage;
     }
-
-    updateBeverage(id, beverage): Promise<Object> {
-        return;
-    }
-
 }

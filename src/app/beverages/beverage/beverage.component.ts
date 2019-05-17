@@ -10,15 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BeverageComponent implements OnInit {
 
   beverage: Object = {};
+  constructor(
+    private beverageService: BeverageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
-  constructor() { }
-
-  ngOnInit() {
-
+  async ngOnInit() {
+    const resp = await this.beverageService.getBeverageById(this.activatedRoute.snapshot.params['id']);
+    this.beverage = resp || [];
   }
 
-  updateBeverage(beverage: any) {
-
+  async updateBeverage(beverage: any) {
+    const beverageID = beverage.id;
+    const resp = await this.beverageService.updateBeverage(beverageID, beverage);
+    if (resp) {
+      this.router.navigate(['./beverages']);
+    }
   }
 
 }
+
+

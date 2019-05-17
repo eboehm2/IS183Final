@@ -30,6 +30,10 @@ import { BeveragesComponent } from './beverages/beverages.component';
 import { BeverageCreateComponent } from './beverages/beverage-create/beverage-create.component';
 
 // users components
+import { UserService } from './users/user.service';
+import { UserComponent } from './users/user/user.component';
+import { UsersComponent } from './users/users.component';
+import { UserCreateComponent } from './users/user-create/user-create.component';
 // ...
 
 // Routes
@@ -46,6 +50,9 @@ const appRoutes: Routes = [
   { path: 'beverage/:id', component: BeverageComponent },
   { path: 'beverage-create', component: BeverageCreateComponent },
   // users
+  {path: 'users', component: UsersComponent},
+  {path: 'user/:id', component: UserComponent},
+  {path: 'users-create', component: UsercreateComponent},
   // ...
 ];
 
@@ -66,6 +73,9 @@ const appRoutes: Routes = [
     BeverageCreateComponent,
     BeverageComponent
     // users
+    UsersComponent,
+    UserCreateComponent,
+    UserComponent
     // ...
   ],
   imports: [
